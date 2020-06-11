@@ -85,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 LoginActivity.myAppDatabase.myDAO().updateUser(userUpdate);
 
-                Toast.makeText(ProfileActivity.this, "Update success",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Update successfully",Toast.LENGTH_SHORT).show();
              }
         });
     }

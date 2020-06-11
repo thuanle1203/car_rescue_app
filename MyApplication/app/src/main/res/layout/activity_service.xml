@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#44b6be"
+    tools:context=".activities.ServiceActivity">
+
+    <EditText
+        android:id ="@+id/edt_addIdPar"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="PartNerID"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id ="@+id/edt_addNume"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="PartnerNumber"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_addIdPar"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF" />
+    <EditText
+        android:id ="@+id/edt_addAdre"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="PartnerAddress"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_addNume"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        />
+    <EditText
+        android:id ="@+id/edt_Review"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="PartNeReview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_addAdre"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/btn_addParner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="ADDD"
+        android:background="@drawable/shape_btn_register"
+        app:layout_constraintTop_toBottomOf="@id/edt_Review"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

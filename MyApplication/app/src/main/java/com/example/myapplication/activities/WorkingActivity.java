@@ -86,8 +86,8 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                 i.putExtras(bundle);
                 startActivity(i);
                 break;
-            case R.id.nav_rate:
-                Intent intent = new Intent(WorkingActivity.this, LoginActivity.class);
+            case R.id.nav_home:
+                Intent intent = new Intent(WorkingActivity.this, ServiceActivity.class);
                 startActivity(intent);
                 break;
 

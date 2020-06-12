@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.myapplication.Database.Object.Partner;
+import com.example.myapplication.Database.Object.Service;
 import com.example.myapplication.R;
 
 import butterknife.BindView;
@@ -30,7 +31,17 @@ public class ServiceActivity extends AppCompatActivity {
     @BindView(R.id.btn_addParner)
     Button btn_addPartner;
 
+    @BindView(R.id.addServiceName)
+    EditText addServiceName;
 
+    @BindView(R.id.addServicePrice)
+    EditText addServicePrice;
+
+    @BindView(R.id.addServiceRegulation)
+    EditText addServiceRegulation;
+
+    @BindView(R.id.btn_addService)
+    Button btn_addService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +62,21 @@ public class ServiceActivity extends AppCompatActivity {
                 p.setPhoneNumber(phoneNum1);
                 p.setReview(review1);
                 LoginActivity.myAppDatabase.myDAO().addPartner(p);
-                Intent i = new Intent(ServiceActivity.this, WorkingActivity.class);
-                startActivity(i);
-                finish();
+            }
+        });
+
+        btn_addService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name, price, regulation;
+                name = addServiceName.getText().toString();
+                price = addServicePrice.getText().toString();
+                regulation = addServiceRegulation.getText().toString();
+                Service s = new Service();
+                s.setServiceName(name);
+                s.setPrice(price);
+                s.setRegulation(regulation);
+                LoginActivity.myAppDatabase.myDAO().addService(s);
             }
         });
     }

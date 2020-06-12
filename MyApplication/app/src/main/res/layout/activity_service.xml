@@ -76,13 +76,73 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="ADDD"
+        android:text="ADD Partner"
         android:background="@drawable/shape_btn_register"
         app:layout_constraintTop_toBottomOf="@id/edt_Review"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
+
+    <EditText
+        android:id ="@+id/addServiceName"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="Service Name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addParner"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF" />
+    <EditText
+        android:id ="@+id/addServicePrice"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="Price Of Service"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addServiceName"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        />
+    <EditText
+        android:id ="@+id/addServiceRegulation"
+        app:layout_goneMarginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_username"
+        android:hint="Regulation Of Service"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addServicePrice"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/btn_addService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="ADD Service"
+        android:background="@drawable/shape_btn_register"
+        app:layout_constraintTop_toBottomOf="@id/addServiceRegulation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 
 

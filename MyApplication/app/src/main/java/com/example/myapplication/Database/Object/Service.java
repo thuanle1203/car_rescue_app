@@ -8,14 +8,21 @@ public class Service {
     @PrimaryKey(autoGenerate = true)
     private int serviceID;
     private String serviceName;
-    private int price;
+
+    private String price;
+
     private String regulation;
-    public Service(int serviceID , String serviceName, int price, String regulation){
+
+    public Service(int serviceID , String serviceName, String price, String regulation){
         this.serviceID=serviceID;
         this.serviceName=serviceName;
         this.price=price;
         this.regulation=regulation;
     }
+
+    public Service() {
+    }
+
     public int getServiceID() {
         return serviceID;
     }
@@ -28,16 +35,18 @@ public class Service {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
+
     public String getRegulation() {
         return regulation;
     }
-    public void setRegulartion(String regulartion) {
-        this.regulation = regulartion;
+
+    public void setRegulation(String regulation) {
+        this.regulation = regulation;
     }
 }

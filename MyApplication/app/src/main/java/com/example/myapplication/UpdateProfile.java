@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,19 +20,19 @@ public class UpdateProfile extends AppCompatActivity {
 
 
     @BindView(R.id.edt_tvEmail)
-    TextView Email;
+    EditText Email;
 
     @BindView(R.id.edt_tvAddress)
-    TextView address;
+    EditText address;
 
     @BindView(R.id.edt_tvPhone)
-    TextView phone;
+    EditText phone;
 
     @BindView(R.id.edt_tvShowUs)
-    TextView fullName;
+    EditText fullName;
 
     @BindView(R.id.btn_saveUpdate)
-    Button bt_svChange;
+    Button bt_svUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,13 @@ public class UpdateProfile extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        User user1 = (User) bundle.getSerializable("username");
+        String usename = bundle.getString("username");
+        User user1 = LoginActivity.myAppDatabase.myDAO().getUserByUsName(usename);
 
-        bt_svChange.setOnClickListener(new View.OnClickListener() {
+        bt_svUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String emailChange = Email.getText().toString();
                 String phoneChange = phone.getText().toString();
                 String addressChange = address.getText().toString();

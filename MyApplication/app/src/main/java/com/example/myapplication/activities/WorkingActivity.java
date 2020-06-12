@@ -1,40 +1,40 @@
-package com.example.myapplication.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.room.RoomDatabase;
 
-import android.Manifest;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.example.myapplication.R;
-import com.google.android.material.navigation.NavigationView;
+        package com.example.myapplication.activities;
 
-import java.util.List;
+        import androidx.annotation.NonNull;
+        import androidx.appcompat.app.ActionBarDrawerToggle;
+        import androidx.appcompat.app.AlertDialog;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
+        import androidx.core.view.GravityCompat;
+        import androidx.drawerlayout.widget.DrawerLayout;
+        import androidx.room.RoomDatabase;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+        import android.Manifest;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.os.AsyncTask;
+        import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.TextView;
+        import android.widget.Toast;
+        import com.example.myapplication.R;
+        import com.google.android.material.navigation.NavigationView;
+
+        import java.util.List;
+
+        import butterknife.BindView;
+        import butterknife.ButterKnife;
 
 public class WorkingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    //    @BindView(R.id.test)
-    //    TextView test;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,6 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
         setSupportActionBar(toolbar);
 
         Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.nav_logout).setVisible(false);
-        menu.findItem(R.id.nav_profile).setVisible(false);
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle =  new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_open);
@@ -60,26 +58,7 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
-//        AsyncTask.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                List<User> userList = RoomAccess.getInstance().getAccess().getUserDAO().getUsers();
-//                if (!userList.isEmpty()) {
-//                    updateUI(userList.get(5).getName());
-//                }
-//            }
-//        });
     }
-
-    //    private void updateUI(String name) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                test.setText(name);
-//            }
-//        });
-//    }
 
     @Override
     public void onBackPressed() {
@@ -101,23 +80,50 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId())
         {
-            case R.id.nav_notifi:
+            case R.id.nav_profile:
                 Bundle bundle = getIntent().getExtras();
                 Intent i = new Intent(WorkingActivity.this, ProfileActivity.class);
                 i.putExtras(bundle);
                 startActivity(i);
                 break;
-            case R.id.nav_profile:
-            Intent intent = new Intent(WorkingActivity.this, LoginActivity.class);
-            startActivity(intent);
-            break;
-//            case R.id.nav_login: menu.findItem(R.id.nav_logout).setVisible(true);
-//                menu.findItem(R.id.nav_profile).setVisible(true);
-//                menu.findItem(R.id.nav_login).setVisible(false);//        break;
-            case R.id.nav_logout: menu.findItem(R.id.nav_logout).setVisible(false);
-                menu.findItem(R.id.nav_profile).setVisible(false);
-//                menu.findItem(R.id.nav_login).setVisible(true);
+            case R.id.nav_rate:
+                Intent intent = new Intent(WorkingActivity.this, LoginActivity.class);
+                startActivity(intent);
                 break;
+
+            case R.id.nav_logout:
+                AlertDialog.Builder builder=new AlertDialog.Builder(WorkingActivity.this);
+                builder.setMessage("Do you want to exit?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        finish();
+                        Intent i=new Intent();
+                        i.putExtra("finish", true);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+                        //startActivity(i);
+                        finish();
+
+                    }
+                });
+
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alert=builder.create();
+                alert.show();
+
+
+                break;
+            case R.id.nav_payment: menu.findItem(R.id.nav_payment).setVisible(false);
+                break;
+
+
             case R.id.nav_share: Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;

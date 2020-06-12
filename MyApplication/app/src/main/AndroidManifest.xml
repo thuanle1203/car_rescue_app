@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".UpdateProfile"></activity>
+        <activity android:name=".activities.ChangePassWord"></activity>
+        <activity android:name=".UpdateProfile" />
         <activity android:name=".activities.PartnerList" />
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.ServiceActivity" />

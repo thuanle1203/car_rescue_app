@@ -15,6 +15,7 @@ import androidx.room.Update;
 
 import com.example.myapplication.Database.Object.User;
 import com.example.myapplication.R;
+import com.example.myapplication.UpdateProfile;
 
 import java.util.List;
 
@@ -64,11 +65,11 @@ public class ProfileActivity extends AppCompatActivity {
         {
             Username.setText("Something wrong");
         }
+
         bt_svChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = getIntent().getExtras();
-                Intent i = new Intent(ProfileActivity.this, Update.class);
+                Intent i = new Intent(ProfileActivity.this, UpdateProfile.class);
                 i.putExtras(bundle);
                 startActivity(i);
              }

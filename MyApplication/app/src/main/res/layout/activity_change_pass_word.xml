@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChangePassWord"
+    android:background="#44b6be">
+    <TextView
+        android:id ="@+id/tv_changePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:textSize="30dp"
+        android:textColor="#F000"
+        android:layout_marginTop="220dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:id ="@+id/edt_oldpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_password"
+        android:hint="Old Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tv_changePass" />
+    <EditText
+        android:id ="@+id/edt_NewPass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_password"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/edt_oldpass" />
+    <EditText
+        android:id ="@+id/edt_create_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_password"
+        android:hint="Old Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tv_changePass" />
+
+    <EditText
+        android:id ="@+id/edt_NewPass2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="14dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:drawableLeft="@drawable/ic_password"
+        android:hint="Old Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/edt_NewPass1" />
+
+    <Button
+        android:id="@+id/btn_savePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Save Change"
+        android:background="@drawable/shape_btn_register"
+        app:layout_constraintTop_toBottomOf="@id/edt_NewPass2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Update;
 
 import com.example.myapplication.Database.Object.User;
 import com.example.myapplication.R;
@@ -66,27 +67,10 @@ public class ProfileActivity extends AppCompatActivity {
         bt_svChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailChange = Email.getText().toString();
-                String phoneChange = phone.getText().toString();
-                String addressChange = address.getText().toString();
-                String fullNameChange = fullName.getText().toString();
-
-                User userUpdate = new User();
-
-                userUpdate.setUserName(user1.getUserName());
-                userUpdate.setUserPassword(user1.getUserPassword());
-                userUpdate.setEmail(emailChange);
-                userUpdate.setPhoneNum(phoneChange);
-                userUpdate.setUserAddress(addressChange);
-                userUpdate.setFullName(fullNameChange);
-                userUpdate.setDateOfBirth("");
-                userUpdate.setGender("");
-                userUpdate.setCreditPoint("");
-                userUpdate.setId(user1.getId());
-
-                LoginActivity.myAppDatabase.myDAO().updateUser(userUpdate);
-
-                Toast.makeText(ProfileActivity.this, "Update successfully",Toast.LENGTH_SHORT).show();
+                Bundle bundle = getIntent().getExtras();
+                Intent i = new Intent(ProfileActivity.this, Update.class);
+                i.putExtras(bundle);
+                startActivity(i);
              }
         });
     }

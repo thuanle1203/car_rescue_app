@@ -7,18 +7,27 @@
     tools:context=".activities.ProfileActivity"
     android:background="#44b6be">
     <TextView
-        android:id ="@+id/tvHelloUser"
+        android:id ="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello username "
+        android:text="Hello "
         android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-
-        />
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id ="@+id/tvNameOfUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="usename "
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tvHello"/>
 
     <TextView
         android:id ="@+id/tvFullname"
@@ -29,25 +38,20 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvHelloUser"
-        app:layout_constraintLeft_toLeftOf="parent"
-
-        />
-    <EditText
-        android:id ="@+id/edt_tvShowUs"
+        app:layout_constraintTop_toBottomOf="@id/tvHello"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id ="@+id/Tv_ShowUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="28dp"
         android:textSize="14dp"
-        android:layout_marginTop="35dp"
-        android:hint="Enter Fullname"
-        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/tvHelloUser"
+        app:layout_constraintTop_toBottomOf="@id/tvHello"
         app:layout_constraintLeft_toRightOf="@id/tvFullname"/>
 
-    />
     <TextView
         android:id ="@+id/tvEmail"
         android:layout_width="wrap_content"
@@ -60,18 +64,16 @@
         app:layout_constraintTop_toBottomOf="@id/tvFullname"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
-        android:id ="@+id/edt_tvEmail"
+    <TextView
+        android:id ="@+id/Tv_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="28dp"
         android:textSize="14dp"
-        android:layout_marginTop="25dp"
-        android:hint="Email"
-        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/edt_tvShowUs"
+        app:layout_constraintTop_toBottomOf="@id/Tv_ShowUs"
         app:layout_constraintLeft_toRightOf="@id/tvEmail" />
 
     <TextView
@@ -87,25 +89,23 @@
         app:layout_constraintTop_toBottomOf="@id/tvEmail"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
-        android:id ="@+id/edt_tvPhone"
+    <TextView
+        android:id ="@+id/Tv_Phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="28dp"
         android:textSize="14dp"
-        android:layout_marginTop="25dp"
-        android:hint="PhoneNumber"
-        android:inputType="textPersonName"
+        android:layout_marginTop="40dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/edt_tvEmail"
+        app:layout_constraintTop_toBottomOf="@id/Tv_Email"
         app:layout_constraintLeft_toRightOf="@id/tvEmail" />
 
     <TextView
         android:id ="@+id/tvAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone: "
+        android:text="Address: "
         android:textSize="20dp"
         app:layout_goneMarginLeft="28dp"
         android:textColor="#FFFFFF"
@@ -114,33 +114,46 @@
         app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <EditText
-        android:id ="@+id/edt_tvAddress"
+    <TextView
+        android:id ="@+id/Tv_Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="28dp"
         android:textSize="14dp"
-        android:layout_marginTop="30dp"
-        android:hint="PhoneNumber"
-        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/edt_tvPhone"
-        app:layout_constraintLeft_toRightOf="@id/edt_tvAddress" />
+        app:layout_constraintTop_toBottomOf="@id/TvPhone"
+        app:layout_constraintLeft_toRightOf="@id/tvAddress" />
 
     <Button
         android:id="@+id/btn_savechange"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Save Change"
-        android:textAllCaps="false"
+        android:layout_marginTop="128dp"
+        android:background="@drawable/shape_btn_login"
+        android:text="Update Information"
 
+        android:textAllCaps="false"
         android:textColor="#44b6be"
-        android:background ="@drawable/shape_btn_login"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber"
-        tools:layout_editor_absoluteX="115dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber" />
+
+    <Button
+        android:id="@+id/btn_Changepassword"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_btn_login"
+        android:text="Change Password"
+        android:textAllCaps="false"
+        android:textColor="#44b6be"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

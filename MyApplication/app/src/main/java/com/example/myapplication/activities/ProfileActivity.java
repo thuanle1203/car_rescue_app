@@ -22,20 +22,20 @@ import butterknife.ButterKnife;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    @BindView(R.id.tvHelloUser)
+    @BindView(R.id.tvNameOfUsername)
     TextView Username;
 
-    @BindView(R.id.edt_tvEmail)
-    EditText Email;
+    @BindView(R.id.Tv_Email)
+    TextView Email;
 
-    @BindView(R.id.edt_tvAddress)
-    EditText address;
+    @BindView(R.id.Tv_Address)
+    TextView address;
 
-    @BindView(R.id.edt_tvPhone)
-    EditText phone;
+    @BindView(R.id.Tv_Phone)
+    TextView phone;
 
-    @BindView(R.id.edt_tvShowUs)
-    EditText fullName;
+    @BindView(R.id.Tv_ShowUs)
+    TextView fullName;
 
     @BindView(R.id.btn_savechange)
     Button bt_svChange;
@@ -50,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         String usename = bundle.getString("username");
         User user1 = LoginActivity.myAppDatabase.myDAO().getUserByUsName(usename);
+
         if (bundle != null) {
 
             Username.setText("Hello " + user1.getUserName());

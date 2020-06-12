@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password must be the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    // save data to db
+                    // save data to dbaa
                     User user1 = new User();
                     user1.setUserName(user);
                     user1.setUserPassword(pass1);

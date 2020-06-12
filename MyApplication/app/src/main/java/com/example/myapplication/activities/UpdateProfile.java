@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,13 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Database.Object.User;
-import com.example.myapplication.activities.LoginActivity;
-import com.example.myapplication.activities.ProfileActivity;
+import com.example.myapplication.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class UpdateProfile extends AppCompatActivity {
 
+    @BindView(R.id.tvHelloUser)
+    TextView Username;
 
     @BindView(R.id.edt_tvEmail)
     EditText Email;
@@ -31,13 +33,15 @@ public class UpdateProfile extends AppCompatActivity {
     @BindView(R.id.edt_tvShowUs)
     EditText fullName;
 
-    @BindView(R.id.btn_saveUpdate)
-    Button bt_svUpdate;
+    @BindView(R.id.btnSaveUpdate)
+    Button btnSaveUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -45,10 +49,9 @@ public class UpdateProfile extends AppCompatActivity {
         String usename = bundle.getString("username");
         User user1 = LoginActivity.myAppDatabase.myDAO().getUserByUsName(usename);
 
-        bt_svUpdate.setOnClickListener(new View.OnClickListener() {
+        btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String emailChange = Email.getText().toString();
                 String phoneChange = phone.getText().toString();
                 String addressChange = address.getText().toString();

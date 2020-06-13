@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.Database.Object.Service;
 import com.example.myapplication.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ServiceActivity extends AppCompatActivity {
     @BindView(R.id.edt_addIdPar)
@@ -48,6 +50,8 @@ public class ServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
 
+        ButterKnife.bind(this);
+
         btn_addPartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +66,7 @@ public class ServiceActivity extends AppCompatActivity {
                 p.setPhoneNumber(phoneNum1);
                 p.setReview(review1);
                 LoginActivity.myAppDatabase.myDAO().addPartner(p);
+                Toast.makeText(ServiceActivity.this, "Partner added successfully",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,6 +82,7 @@ public class ServiceActivity extends AppCompatActivity {
                 s.setPrice(price);
                 s.setRegulation(regulation);
                 LoginActivity.myAppDatabase.myDAO().addService(s);
+                Toast.makeText(ServiceActivity.this, "Service added successfully",Toast.LENGTH_SHORT).show();
             }
         });
     }

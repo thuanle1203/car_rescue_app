@@ -11,4 +11,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="mapkey" translatable="false">AIzaSyByvy2VOMMUTBTNJMNAe5gjlEqESzCflRs</string>
 </resources>

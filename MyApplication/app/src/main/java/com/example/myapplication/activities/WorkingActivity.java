@@ -87,7 +87,7 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                 startActivity(i);
                 break;
             case R.id.nav_home:
-                Intent intent = new Intent(WorkingActivity.this, ServiceActivity.class);
+                Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
                 startActivity(intent);
                 break;
 

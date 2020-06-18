@@ -30,6 +30,9 @@ public class ServiceActivity extends AppCompatActivity {
     @BindView(R.id.edt_Review)
     EditText edt_Review;
 
+    @BindView(R.id.edt_addService)
+    EditText edt_Service;
+
     @BindView(R.id.btn_addParner)
     Button btn_addPartner;
 
@@ -55,17 +58,24 @@ public class ServiceActivity extends AppCompatActivity {
         btn_addPartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name1, address1, phoneNum1, review1;
+                String name1, address1, phoneNum1, review1, service1;
                 name1 = edt_name.getText().toString();
                 address1 = edt_Adrre.getText().toString();
                 phoneNum1 = edt_Nume.getText().toString();
                 review1 = edt_Review.getText().toString();
+                service1 = edt_Service.getText().toString();
                 Partner p = new Partner();
                 p.setNamePartner(name1);
                 p.setAddressPartner(address1);
                 p.setPhoneNumber(phoneNum1);
                 p.setReview(review1);
+                p.setActivePlace(service1);
                 LoginActivity.myAppDatabase.myDAO().addPartner(p);
+                /*edt_name.setText("");
+                edt_Adrre.setText("");
+                edt_Nume.setText("");
+                edt_Review.setText("");
+                edt_Service.setText("");*/
                 Toast.makeText(ServiceActivity.this, "Partner added successfully",Toast.LENGTH_SHORT).show();
             }
         });

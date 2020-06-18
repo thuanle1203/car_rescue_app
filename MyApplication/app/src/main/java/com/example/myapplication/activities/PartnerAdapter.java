@@ -29,7 +29,9 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull PartnerAdapter.ViewHolder holder, int position) {
-        holder.name.setText(partnerArrayList.get(position).getNamePartner()); 
+        holder.name.setText(partnerArrayList.get(position).getNamePartner());
+        holder.address.setText(partnerArrayList.get(position).getAddressPartner());
+        holder.phone.setText(partnerArrayList.get(position).getPhoneNumber());
     }
 
     @Override
@@ -39,9 +41,13 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
+        public TextView address;
+        public TextView phone;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.partnerRow);
+            name = itemView.findViewById(R.id.partnerName);
+            address = itemView.findViewById(R.id.partnerAddress);
+            phone = itemView.findViewById(R.id.partnerPhone);
         }
     }
 }

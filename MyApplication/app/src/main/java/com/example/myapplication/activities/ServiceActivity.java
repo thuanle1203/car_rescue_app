@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.Database.Object.Service;
+import com.example.myapplication.Database.Object.ServiceOfPartner;
 import com.example.myapplication.R;
 
 import butterknife.BindView;
@@ -58,18 +59,23 @@ public class ServiceActivity extends AppCompatActivity {
         btn_addPartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name1, address1, phoneNum1, review1, service1;
+
                 name1 = edt_name.getText().toString();
                 address1 = edt_Adrre.getText().toString();
                 phoneNum1 = edt_Nume.getText().toString();
                 review1 = edt_Review.getText().toString();
                 service1 = edt_Service.getText().toString();
+
                 Partner p = new Partner();
+
                 p.setNamePartner(name1);
                 p.setAddressPartner(address1);
                 p.setPhoneNumber(phoneNum1);
                 p.setReview(review1);
                 p.setActivePlace(service1);
+
                 LoginActivity.myAppDatabase.myDAO().addPartner(p);
                 /*edt_name.setText("");
                 edt_Adrre.setText("");
@@ -77,6 +83,17 @@ public class ServiceActivity extends AppCompatActivity {
                 edt_Review.setText("");
                 edt_Service.setText("");*/
                 Toast.makeText(ServiceActivity.this, "Partner added successfully",Toast.LENGTH_SHORT).show();
+
+                String[] serviceList = service1.split(",");
+
+                for (String service : serviceList)
+                {
+                    int partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByName(name1);
+                    int serviceId = Integer.parseInt(service);
+                    ServiceOfPartner serviceOfPartner = new ServiceOfPartner(1, 0, serviceId, partnerId);
+                    LoginActivity.myAppDatabase.myDAO().addServiceOfPartner(serviceOfPartner);
+                    Toast.makeText(ServiceActivity.this, "ServiceOfPartner added successfully",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

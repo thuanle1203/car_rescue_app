@@ -9,6 +9,7 @@ import androidx.room.Update;
 import com.example.myapplication.Database.Object.Bill;
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.Database.Object.Service;
+import com.example.myapplication.Database.Object.ServiceOfPartner;
 import com.example.myapplication.Database.Object.User;
 
 import java.util.List;
@@ -47,6 +48,9 @@ public  interface MyDAO {
     @Query("select partnerID from serviceOfPartner where serviceID = :serviceID")
     public List<Integer> getPartner(int serviceID);
 
+    @Query("select partnerID from partners where namePartner = :name")
+    public int getPartnerIdByName(String name);
+
     //------------Service-----------------
 
     @Insert
@@ -60,7 +64,8 @@ public  interface MyDAO {
 
     //------------ServiceOfPartner-----------------
 
-
+    @Insert
+    public void addServiceOfPartner(ServiceOfPartner serviceOfPartner);
 
 
 

@@ -10,10 +10,9 @@ public class ServiceOfPartner {
         private int totalPrice;
         private int serviceID;
         private int partnerID;
-        public ServiceOfPartner(int serviceOfPartnerID, int totalPrice,int serviceID,int partnerID) {
+        public ServiceOfPartner(int serviceOfPartnerID, int totalPrice, int serviceID, int partnerID) {
             this.serviceID=serviceID;
             this.partnerID=partnerID;
-            this.serviceOfPartnerID=serviceOfPartnerID;
             this.totalPrice=totalPrice;
         }
         public int getServiceOfPartnerID() {

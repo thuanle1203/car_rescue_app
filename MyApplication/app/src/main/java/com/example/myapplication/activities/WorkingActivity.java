@@ -22,9 +22,13 @@
         import android.view.View;
         import android.widget.TextView;
         import android.widget.Toast;
+
+        import com.example.myapplication.Database.Object.Partner;
         import com.example.myapplication.R;
         import com.google.android.material.navigation.NavigationView;
 
+        import java.io.Serializable;
+        import java.util.ArrayList;
         import java.util.List;
 
         import butterknife.BindView;
@@ -87,7 +91,17 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                 startActivity(i);
                 break;
             case R.id.nav_home:
+                List<Partner> partnerArrayList = new ArrayList<Partner>();
+                List<Integer> partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByServiceId(1);
+                for (int i1 = 0; i1 < partnerId.size(); i1++)
+                {
+                    Partner pn = LoginActivity.myAppDatabase.myDAO().getPartnerById(partnerId.get(i1));
+                    partnerArrayList.add(pn);
+
+                }
+
                 Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
+                intent.putExtra("partnerList", (Serializable) partnerArrayList);
                 startActivity(intent);
                 break;
 

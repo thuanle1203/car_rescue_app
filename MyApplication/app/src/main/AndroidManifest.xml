@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".MyApplication"
@@ -20,7 +21,7 @@
         <activity android:name=".activities.ServiceActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.WorkingActivity" />
-        <activity android:name=".activities.MapActivity" />
+
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="fullSensor">

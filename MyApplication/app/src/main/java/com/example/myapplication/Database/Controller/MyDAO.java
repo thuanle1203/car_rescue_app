@@ -45,11 +45,11 @@ public  interface MyDAO {
     @Query("select * from partners")
     public List<Partner> getPartner();
 
-    @Query("select partnerID from serviceOfPartner where serviceID = :serviceID")
-    public List<Integer> getPartner(int serviceID);
-
     @Query("select partnerID from partners where namePartner = :name")
     public int getPartnerIdByName(String name);
+
+    @Query("select * from partners where partnerID = :id")
+    public Partner getPartnerById(int id);
 
     //------------Service-----------------
 
@@ -67,7 +67,8 @@ public  interface MyDAO {
     @Insert
     public void addServiceOfPartner(ServiceOfPartner serviceOfPartner);
 
-
+    @Query("select partnerID from serviceOfPartner where serviceID = :serviceID")
+    public List<Integer> getPartnerIdByServiceId(int serviceID);
 
 
 

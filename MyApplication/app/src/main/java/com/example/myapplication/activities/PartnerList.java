@@ -26,7 +26,14 @@ public class PartnerList extends AppCompatActivity {
         setContentView(R.layout.activity_partner_list);
         ButterKnife.bind(this);
 
-        partnerArrayList = (ArrayList<Partner>) getIntent().getSerializableExtra("partnerArrayList");
+        List<Partner> partnerArrayList = new ArrayList<Partner>();
+        List<Integer> partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByServiceId(1);
+        for (int i1 = 0; i1 < partnerId.size(); i1++)
+        {
+            Partner pn = LoginActivity.myAppDatabase.myDAO().getPartnerById(partnerId.get(i1));
+            partnerArrayList.add(pn);
+
+        }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PartnerAdapter(partnerArrayList);

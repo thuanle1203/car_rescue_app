@@ -34,6 +34,12 @@ public class ServiceActivity extends AppCompatActivity {
     @BindView(R.id.edt_addService)
     EditText edt_Service;
 
+    @BindView(R.id.edt_addLong)
+    EditText edt_Long;
+
+    @BindView(R.id.edt_addLate)
+    EditText edt_Late;
+
     @BindView(R.id.btn_addParner)
     Button btn_addPartner;
 
@@ -60,13 +66,15 @@ public class ServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String name1, address1, phoneNum1, review1, service1;
+                String name1, address1, phoneNum1, review1, service1, longTitude, lateTitude;
 
                 name1 = edt_name.getText().toString();
                 address1 = edt_Adrre.getText().toString();
                 phoneNum1 = edt_Nume.getText().toString();
                 review1 = edt_Review.getText().toString();
                 service1 = edt_Service.getText().toString();
+                longTitude = edt_Long.getText().toString();
+                lateTitude = edt_Late.getText().toString();
 
                 Partner p = new Partner();
 
@@ -75,6 +83,8 @@ public class ServiceActivity extends AppCompatActivity {
                 p.setPhoneNumber(phoneNum1);
                 p.setReview(review1);
                 p.setActivePlace(service1);
+                p.setLongitude(Double.parseDouble(longTitude));
+                p.setLatitude(Double.parseDouble(lateTitude));
 
                 LoginActivity.myAppDatabase.myDAO().addPartner(p);
                 /*edt_name.setText("");

@@ -28,6 +28,9 @@ public  interface MyDAO {
     @Query("select * from users where userName = :userName")
     public User getUserByUsName(String userName);
 
+    @Query("update users set userPassword = :pass where userName = :userName")
+    public void updatePassword(String userName, String pass);
+
     @Query("select * from users")
     public List<User> getUsers();
 

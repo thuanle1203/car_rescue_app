@@ -16,6 +16,15 @@ import java.util.List;
 
 public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHolder> {
     List<Partner> partnerArrayList = new ArrayList<>();
+    OnItemClickListener mListener;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public PartnerAdapter(List<Partner> partnerArrayList) {
         this.partnerArrayList = partnerArrayList;
     }
@@ -24,7 +33,7 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
     @Override
     public PartnerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.partner_row, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mListener);
     }
 
     @Override
@@ -43,11 +52,22 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
         public TextView name;
         public TextView address;
         public TextView phone;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             name = itemView.findViewById(R.id.partnerName);
             address = itemView.findViewById(R.id.partnerAddress);
             phone = itemView.findViewById(R.id.partnerPhone);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

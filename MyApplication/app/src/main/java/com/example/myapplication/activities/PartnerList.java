@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.R;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
 public class PartnerList extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    PartnerAdapter adapter;
     ArrayList<Partner> partnerArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,14 @@ public class PartnerList extends AppCompatActivity {
             partnerArrayList.add(pn);
 
         }
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PartnerAdapter(partnerArrayList);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new PartnerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(PartnerList.this, partnerArrayList.get(position).getNamePartner(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

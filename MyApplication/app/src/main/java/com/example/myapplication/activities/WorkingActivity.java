@@ -91,10 +91,7 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                 startActivity(i);
                 break;
             case R.id.nav_home:
-
-
                 Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
-                //intent.putExtra("partnerList", (Serializable) partnerArrayList);
                 startActivity(intent);
                 break;
 
@@ -127,7 +124,9 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
 
 
                 break;
-            case R.id.nav_payment: menu.findItem(R.id.nav_payment).setVisible(false);
+            case R.id.nav_payment:
+                Intent intent2 = new Intent(WorkingActivity.this, ServiceActivity.class);
+                startActivity(intent2);
                 break;
 
 

@@ -106,6 +106,7 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
     }
 
 
+
     private void fetchLastLocation() {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{

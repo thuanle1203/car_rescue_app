@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -41,7 +43,14 @@ public class PartnerList extends AppCompatActivity {
         adapter.setOnItemClickListener(new PartnerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(PartnerList.this, partnerArrayList.get(position).getNamePartner(),Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PartnerList.this,MapActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Bundle bundle1 = new Bundle();
+                bundle1.putDouble("longTitude",partnerArrayList.get(position).getLongitude());
+                bundle1.putDouble("lateTitude",partnerArrayList.get(position).getLatitude());
+                i.putExtras(bundle1);
+                startActivity(i);
+                finish();
             }
         });
     }

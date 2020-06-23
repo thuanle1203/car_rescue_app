@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if (user1 != null)
                 {
-                    Intent i = new Intent(LoginActivity.this,WorkingActivity.class);
+                    Intent i = new Intent(LoginActivity.this,MapActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Bundle bundle = new Bundle();
                     bundle.putString("username",user.toString());

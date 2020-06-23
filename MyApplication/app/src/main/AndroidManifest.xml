@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
+        <activity android:name=".activities.MapActivity"></activity>
         <activity android:name=".activities.UpdateProfile" />
         <activity android:name=".activities.ChangePassWord" />
         <activity android:name=".activities.PartnerList" />
@@ -21,7 +22,6 @@
         <activity android:name=".activities.ServiceActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.WorkingActivity" />
-
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="fullSensor">

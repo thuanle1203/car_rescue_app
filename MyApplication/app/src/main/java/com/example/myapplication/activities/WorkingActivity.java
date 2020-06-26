@@ -39,6 +39,8 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    Bundle bundle;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,14 +87,18 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
         switch (menuItem.getItemId())
         {
             case R.id.nav_profile:
-                Bundle bundle = getIntent().getExtras();
-                Intent i = new Intent(WorkingActivity.this, ProfileActivity.class);
+                bundle = getIntent().getExtras();
+                i = new Intent(WorkingActivity.this, ProfileActivity.class);
                 i.putExtras(bundle);
                 startActivity(i);
                 break;
             case R.id.nav_home:
-                Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
-                startActivity(intent);
+//                Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
+//                startActivity(intent);
+                bundle = getIntent().getExtras();
+                i = new Intent(WorkingActivity.this, PartnerList.class);
+                i.putExtras(bundle);
+                startActivity(i);
                 break;
 
             case R.id.nav_logout:

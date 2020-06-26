@@ -2,7 +2,7 @@ package com.example.myapplication.Database.Object;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
     @Entity(tableName = "partners")
-    public class Partner {
+    public class Partner implements Comparable<Partner> {
         @PrimaryKey(autoGenerate = true)
         private int partnerID;
         private String namePartner;
@@ -13,6 +13,7 @@ import androidx.room.PrimaryKey;
         private double longitude;
         private String phoneNumber;
         private String activeTime;
+        private float distance;
 
         public Partner(int partnerID, String namePartner, String activePlace, String review, String addressPartner, double latitude, double longitude, String phoneNumber, String activeTime) {
             this.partnerID = partnerID;
@@ -27,6 +28,14 @@ import androidx.room.PrimaryKey;
         }
 
         public Partner() {
+        }
+
+        public float getDistance() {
+            return distance;
+        }
+
+        public void setDistance(float distance) {
+            this.distance = distance;
         }
 
         public String getNamePartner() {
@@ -88,5 +97,15 @@ import androidx.room.PrimaryKey;
         }
         public void setActiveTime(String activeTime) {
             this.activeTime = activeTime;
+        }
+
+        @Override
+        public int compareTo(Partner o) {
+            if (distance == o.distance){
+                return 0;
+            }
+            else if(distance>o.distance)
+                return 1;
+            else return -1;
         }
     }

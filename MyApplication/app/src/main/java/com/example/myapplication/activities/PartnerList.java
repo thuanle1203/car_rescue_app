@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.icu.text.Transliterator;
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,20 +25,33 @@ public class PartnerList extends AppCompatActivity {
     RecyclerView recyclerView;
     PartnerAdapter adapter;
     ArrayList<Partner> partnerArrayList;
+    Bundle bundle;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner_list);
         ButterKnife.bind(this);
 
+        intent = getIntent();
+        bundle = intent.getExtras();
+
+        Double currentLatitude = bundle.getDouble("currentLatitude");
+        Double currentLongitude = bundle.getDouble("currentLongitude");
+
         List<Partner> partnerArrayList = new ArrayList<Partner>();
         List<Integer> partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByServiceId(1);
+
+
         for (int i1 = 0; i1 < partnerId.size(); i1++)
         {
             Partner pn = LoginActivity.myAppDatabase.myDAO().getPartnerById(partnerId.get(i1));
+            pn.setDistance(distanceBetween(currentLatitude,currentLongitude,pn.getLatitude(),pn.getLongitude()));
             partnerArrayList.add(pn);
-
         }
+
+        Collections.sort(partnerArrayList);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PartnerAdapter(partnerArrayList);
         recyclerView.setAdapter(adapter);
@@ -53,5 +68,21 @@ public class PartnerList extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    public static float distanceBetween (double startLatitude, double startLongitude, double endLatitude, double endLongitude){
+        float result;
+        Location locationA = new Location("point A");
+
+        locationA.setLatitude(startLatitude);
+        locationA.setLongitude(startLongitude);
+
+        Location locationB = new Location("point B");
+
+        locationB.setLatitude(endLatitude);
+        locationB.setLongitude(endLongitude);
+
+        result = (float) (locationA.distanceTo(locationB)*1.6/1000);
+
+        return result;
     }
 }

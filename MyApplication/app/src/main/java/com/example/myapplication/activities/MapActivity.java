@@ -252,7 +252,12 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.sos) {
+
                     Intent i = new Intent(MapActivity.this, WorkingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putDouble("currentLatitude",currentlocation.getLatitude());
+                    bundle.putDouble("currentLongitude",currentlocation.getLongitude());
+                    i.putExtras(bundle);
                     startActivity(i);
                     finish();
                     return true;
@@ -391,7 +396,7 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         if (bundle1!=null ) {
             Double longitude = bundle1.getDouble("longTitude");
             Double latetitude = bundle1.getDouble("lateTitude");
-            Toast.makeText(this, longitude + "    " + latetitude, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, longitude + "    " + latetitude, Toast.LENGTH_SHORT).show();
             if (longitude!=0 && latetitude != 0){
                 // partner location
                 LatLng lat2 = new LatLng(latetitude,longitude);

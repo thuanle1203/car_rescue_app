@@ -40,7 +40,7 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
     public void onBindViewHolder(@NonNull PartnerAdapter.ViewHolder holder, int position) {
         holder.name.setText(partnerArrayList.get(position).getNamePartner());
         holder.address.setText(partnerArrayList.get(position).getAddressPartner());
-        holder.phone.setText(partnerArrayList.get(position).getPhoneNumber());
+        holder.distance.setText((String.valueOf(partnerArrayList.get(position).getDistance())) + " km");
     }
 
     @Override
@@ -51,12 +51,12 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public TextView address;
-        public TextView phone;
+        public TextView distance;
         public ViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             name = itemView.findViewById(R.id.partnerName);
             address = itemView.findViewById(R.id.partnerAddress);
-            phone = itemView.findViewById(R.id.partnerPhone);
+            distance = itemView.findViewById(R.id.partnerPhone);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

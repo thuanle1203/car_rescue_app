@@ -54,6 +54,9 @@ public  interface MyDAO {
     @Query("select * from partners where partnerID = :id")
     public Partner getPartnerById(int id);
 
+    @Query("select * from partners order by distance")
+    public List<Partner> orderByDistance();
+
     //------------Service-----------------
 
     @Insert

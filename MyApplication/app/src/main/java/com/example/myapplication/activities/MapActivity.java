@@ -178,7 +178,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.myapplication.BuildConfig;
+import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.R;
+import com.example.myapplication.direction.FetchURL;
+import com.example.myapplication.direction.TaskLoadedCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -191,6 +194,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -201,14 +206,17 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MapActivity extends  AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener {
+public class MapActivity extends  AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener, TaskLoadedCallback {
     private static final String TAG = "MapActivity";
-    Location currentlocation;
+    Location currentlocation,partnerlocation;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
     private boolean mLocationPermissionGranted = false;
+
+    private Polyline currentPolyline;
+    GoogleMap map;
 
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
@@ -216,8 +224,12 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE  = 101;
 
+    Bundle bundle1;
+
     LocationManager locationManager;
     String provider;
+
+    Partner partner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,6 +260,8 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 return false;
             }
         });
+        Intent intent = getIntent();
+        bundle1 = intent.getExtras();
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -259,7 +273,11 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
         fetchLastLocation();
+
+
+
     }
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
@@ -363,12 +381,45 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng lat = new LatLng(currentlocation.getLatitude(),currentlocation.getLongitude());
-        MarkerOptions mk= new MarkerOptions().position(lat).title("I'm here");
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lat,15));
-        googleMap.addMarker(mk);
-    }
+        map = googleMap;
+        // current location
+        LatLng lat1 = new LatLng(currentlocation.getLatitude(),currentlocation.getLongitude());
+        //LatLng lat1 = new LatLng(16.0663651,108.2330568);
+        MarkerOptions mk= new MarkerOptions().position(lat1).title("I'm here");
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(lat1,15));
+        map.addMarker(mk);
+        if (bundle1!=null ) {
+            Double longitude = bundle1.getDouble("longTitude");
+            Double latetitude = bundle1.getDouble("lateTitude");
+            Toast.makeText(this, longitude + "    " + latetitude, Toast.LENGTH_SHORT).show();
+            if (longitude!=0 && latetitude != 0){
+                // partner location
+                LatLng lat2 = new LatLng(latetitude,longitude);
+                mk = new MarkerOptions().position(lat2).title("Partner is here");
+                map.addMarker(mk);
+                String url = getUrl(lat1,lat2,"direction");
+                new FetchURL(MapActivity.this).execute(url,"driving");
+            }
+        }
 
+
+
+    }
+    private String getUrl(LatLng origin, LatLng dest, String directionMode) {
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Mode
+        String mode = "mode=" + directionMode;
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
+        // Output format
+        String output = "json";
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.mapkey);
+        return url;
+    }
     // @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 //        switch (requestCode){
@@ -444,7 +495,7 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 i.putExtras(bundle);
                 startActivity(i);
             case R.id.nav_home:
-                break;
+
 
             case R.id.nav_logout:
                 AlertDialog.Builder builder=new AlertDialog.Builder(MapActivity.this);
@@ -491,4 +542,10 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }
 
+    @Override
+    public void onTaskDone(Object... values) {
+        if (currentPolyline != null)
+            currentPolyline.remove();
+        currentPolyline = map.addPolyline((PolylineOptions) values[0]);
+    }
 }

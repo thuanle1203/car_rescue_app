@@ -38,9 +38,10 @@ public class PartnerList extends AppCompatActivity {
 
         Double currentLatitude = bundle.getDouble("currentLatitude");
         Double currentLongitude = bundle.getDouble("currentLongitude");
+        int serviceId = bundle.getInt("serviceId");
 
         List<Partner> partnerArrayList = new ArrayList<Partner>();
-        List<Integer> partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByServiceId(1);
+        List<Integer> partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByServiceId(serviceId);
 
 
         for (int i1 = 0; i1 < partnerId.size(); i1++)
@@ -63,14 +64,15 @@ public class PartnerList extends AppCompatActivity {
                 Bundle bundle1 = new Bundle();
                 bundle1.putDouble("longTitude",partnerArrayList.get(position).getLongitude());
                 bundle1.putDouble("lateTitude",partnerArrayList.get(position).getLatitude());
+                bundle1.putString("pName", partnerArrayList.get(position).getNamePartner());
                 i.putExtras(bundle1);
                 startActivity(i);
                 finish();
             }
         });
     }
-    public static float distanceBetween (double startLatitude, double startLongitude, double endLatitude, double endLongitude){
-        float result;
+    public static double distanceBetween (double startLatitude, double startLongitude, double endLatitude, double endLongitude){
+        double result;
         Location locationA = new Location("point A");
 
         locationA.setLatitude(startLatitude);
@@ -81,8 +83,8 @@ public class PartnerList extends AppCompatActivity {
         locationB.setLatitude(endLatitude);
         locationB.setLongitude(endLongitude);
 
-        result = (float) (locationA.distanceTo(locationB)*1.6/1000);
-
+        result = locationA.distanceTo(locationB)/1000;
         return result;
     }
+
 }

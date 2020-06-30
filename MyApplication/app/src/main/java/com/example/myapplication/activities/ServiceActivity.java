@@ -100,7 +100,7 @@ public class ServiceActivity extends AppCompatActivity {
                 {
                     int partnerId = LoginActivity.myAppDatabase.myDAO().getPartnerIdByName(name1);
                     int serviceId = Integer.parseInt(service);
-                    ServiceOfPartner serviceOfPartner = new ServiceOfPartner(1, 0, serviceId, partnerId);
+                    ServiceOfPartner serviceOfPartner = new ServiceOfPartner(2, 0, serviceId, partnerId);
                     LoginActivity.myAppDatabase.myDAO().addServiceOfPartner(serviceOfPartner);
                     Toast.makeText(ServiceActivity.this, "ServiceOfPartner added successfully",Toast.LENGTH_SHORT).show();
                 }

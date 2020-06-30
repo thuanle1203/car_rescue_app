@@ -7,11 +7,13 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.myapplication.Database.Object.Bill;
+import com.example.myapplication.Database.Object.HistoryDB;
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.Database.Object.Service;
 import com.example.myapplication.Database.Object.ServiceOfPartner;
 import com.example.myapplication.Database.Object.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -54,9 +56,6 @@ public  interface MyDAO {
     @Query("select * from partners where partnerID = :id")
     public Partner getPartnerById(int id);
 
-    @Query("select * from partners order by distance")
-    public List<Partner> orderByDistance();
-
     //------------Service-----------------
 
     @Insert
@@ -76,11 +75,17 @@ public  interface MyDAO {
     @Query("select partnerID from serviceOfPartner where serviceID = :serviceID")
     public List<Integer> getPartnerIdByServiceId(int serviceID);
 
-
-
-
     //@Query("select * from bills where userID = :userId")
     //public void getBill(int userId);
+
+    @Query("select * from partners order by distance")
+    public List<Partner> orderByDistance();
+
+    @Insert
+    public void addHis(HistoryDB historyDB);
+
+    @Query("select * from history")
+    public List<HistoryDB> getHistory();
 
 
 }

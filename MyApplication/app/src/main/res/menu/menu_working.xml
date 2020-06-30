@@ -19,7 +19,7 @@
             android:title="Payment" />
 
         <item
-            android:id="@+id/nav_notifi"
+            android:id="@+id/nav_notification"
             android:icon="@drawable/ic_notification"
             android:title="Notifications" />
 

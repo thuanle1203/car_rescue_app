@@ -1,4 +1,5 @@
 package com.example.myapplication.direction;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -9,6 +10,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+        import android.content.Context;
+        import android.os.AsyncTask;
+        import android.util.Log;
+
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.io.InputStreamReader;
+        import java.net.HttpURLConnection;
+        import java.net.URL;
 
 public class FetchURL extends AsyncTask<String, Void, String> {
     Context mContext;
@@ -71,3 +83,4 @@ public class FetchURL extends AsyncTask<String, Void, String> {
         return data;
     }
 }
+

@@ -11,8 +11,7 @@
         android:title="SOS"
         android:icon="@drawable/ic_report" />
     <item
-        android:id="@+id/Love"
-        android:title="Love"
-        android:icon="@drawable/ic_rate" />
-
+        android:id="@+id/service"
+        android:title="Service"
+        android:icon="@drawable/ic_service" />
 </menu>

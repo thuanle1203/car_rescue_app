@@ -42,8 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button bt_svChange;
 
     @BindView(R.id.btn_Changepassword)
-    Button btnChangePass;
-
+    Button btn_changePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
              }
         });
-        btnChangePass.setOnClickListener(new View.OnClickListener() {
+
+        btn_changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ProfileActivity.this, ChangePassWord.class);

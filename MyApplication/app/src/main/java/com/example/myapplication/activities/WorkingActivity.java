@@ -17,28 +17,50 @@
         import android.os.AsyncTask;
         import android.os.Bundle;
         import android.view.Menu;
-        import android.view.MenuInflater;
         import android.view.MenuItem;
         import android.view.View;
+        import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
 
-        import com.example.myapplication.Database.Object.Partner;
+        import com.example.myapplication.BuildConfig;
         import com.example.myapplication.R;
         import com.google.android.material.navigation.NavigationView;
 
-        import java.io.Serializable;
         import java.util.ArrayList;
         import java.util.List;
 
         import butterknife.BindView;
         import butterknife.ButterKnife;
 
-public class WorkingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DrawerLayout drawerLayout;
+public class WorkingActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
+    @BindView(R.id.Puntured)
+    ImageView puntured;
+
+    @BindView(R.id.outofgas)
+    ImageView outofgas;
+
+    @BindView(R.id.rescue)
+    ImageView rescue;
+
+    @BindView(R.id.outOfElectricity)
+    ImageView OutofElectricity;
+
+    @BindView(R.id.calltaxi)
+    ImageView calltaxi;
+
+    @BindView(R.id.lostkey)
+    ImageView lostkey;
+
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    Menu menu;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
     Bundle bundle;
     Intent i;
 
@@ -48,41 +70,92 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_working);
         ButterKnife.bind(this);
 
-        // menu main
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
-
-        Menu menu = navigationView.getMenu();
-
-        navigationView.bringToFront();
         ActionBarDrawerToggle toggle =  new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_open);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
 
-    }
+        puntured.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle = getIntent().getExtras();
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 1);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
 
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {super.onBackPressed();
-        }
-    }
+        outofgas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 2);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+
+        rescue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 3);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+        OutofElectricity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 4);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+        calltaxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 5);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+        lostkey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                bundle.putInt("serviceId", 6);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+    }
     @Override
     protected void onDestroy() {
         ButterKnife.bind(this).unbind();
         super.onDestroy();
     }
 
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId())
         {
@@ -93,14 +166,11 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                 startActivity(i);
                 break;
             case R.id.nav_home:
-//                Intent intent = new Intent(WorkingActivity.this, PartnerList.class);
-//                startActivity(intent);
                 bundle = getIntent().getExtras();
-                i = new Intent(WorkingActivity.this, PartnerList.class);
-                i.putExtras(bundle);
-                startActivity(i);
+                Intent intent  = new Intent(this,MapActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
-
             case R.id.nav_logout:
                 AlertDialog.Builder builder=new AlertDialog.Builder(WorkingActivity.this);
                 builder.setMessage("Do you want to exit?");
@@ -114,7 +184,6 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
                         //startActivity(i);
                         finish();
-
                     }
                 });
 
@@ -127,16 +196,32 @@ public class WorkingActivity extends AppCompatActivity implements NavigationView
 
                 AlertDialog alert=builder.create();
                 alert.show();
-
-
                 break;
             case R.id.nav_payment:
-                Intent intent2 = new Intent(WorkingActivity.this, ServiceActivity.class);
-                startActivity(intent2);
+                bundle = getIntent().getExtras();
+                i = new Intent(WorkingActivity.this, ServiceActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
                 break;
 
+            case R.id.nav_notification:
+                Intent intent1 = new Intent(WorkingActivity.this,PartnerList.class);
+                startActivity(intent1);
+                finish();
+                break;
 
-            case R.id.nav_share: Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+            case R.id.nav_share:
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                    String shareMessage= "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    //e.toString();
+                }
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }

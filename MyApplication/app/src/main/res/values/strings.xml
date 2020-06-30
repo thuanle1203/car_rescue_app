@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Radar 3T</string>
     <string name="title_activity_login_screen01">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -12,4 +12,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="mapkey" translatable="false">AIzaSyByvy2VOMMUTBTNJMNAe5gjlEqESzCflRs</string>
+    <string name="title_location_permission">permission</string>
+    <string name="text_location_permission">location</string>
+    <string name="ok">OK</string>
 </resources>

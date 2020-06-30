@@ -1,156 +1,4 @@
 package com.example.myapplication.activities;
-//
-//import androidx.annotation.NonNull;
-//import androidx.annotation.Nullable;
-//import androidx.annotation.RequiresApi;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.app.ActivityCompat;
-//
-//import android.Manifest;
-//import android.content.Intent;
-//import android.content.IntentSender;
-//import android.content.pm.PackageManager;
-//import android.location.Location;
-//import android.net.Uri;
-//import android.os.Build;
-//import android.os.Bundle;
-//import android.provider.Settings;
-//import android.widget.Toast;
-//
-//import com.example.myapplication.R;
-//import com.google.android.gms.common.api.ResolvableApiException;
-//import com.google.android.gms.location.FusedLocationProviderClient;
-//import com.google.android.gms.location.LocationRequest;
-//import com.google.android.gms.location.LocationServices;
-//import com.google.android.gms.location.LocationSettingsRequest;
-//import com.google.android.gms.location.LocationSettingsResponse;
-//import com.google.android.gms.location.SettingsClient;
-//import com.google.android.gms.maps.CameraUpdateFactory;
-//import com.google.android.gms.maps.GoogleMap;
-//import com.google.android.gms.maps.OnMapReadyCallback;
-//import com.google.android.gms.maps.SupportMapFragment;
-//import com.google.android.gms.maps.model.LatLng;
-//import com.google.android.gms.maps.model.MarkerOptions;
-//import com.google.android.gms.tasks.OnFailureListener;
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.android.gms.tasks.Task;
-//
-//public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-//    Location currentLocation;
-//    FusedLocationProviderClient fusedLocationProviderClient;
-//    private static final int REQUEST_CODE=101;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_map);
-//
-//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-//        fetchLastLocation();
-//    }
-//
-//    private void fetchLastLocation() {
-//        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this,new String[] {
-//                    Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
-//            return;
-//        }
-///*        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_FINE_LOCATION_CODE);
-//        }*/
-//
-///*
-//        LocationRequest locationRequest = new LocationRequest();
-//        locationRequest.setInterval(10000);
-//        locationRequest.setFastestInterval(5000);
-//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
-//        SettingsClient settingsClient = LocationServices.getSettingsClient(MapActivity.this);
-//        Task<LocationSettingsResponse> task1 = settingsClient.checkLocationSettings(builder.build());
-//        task1.addOnFailureListener(MapActivity.this, new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                if (e instanceof ResolvableApiException){
-//                    ResolvableApiException resol = (ResolvableApiException)e ;
-//                    try {
-//                        resol.startResolutionForResult(MapActivity.this, 51);
-//                    } catch (IntentSender.SendIntentException ex) {
-//                        ex.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-//*/
-//
-//        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-//        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-//            @Override
-//            public void onSuccess(Location location) {
-//                if (location!=null){
-//                    currentLocation = location;
-//                    SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
-//                    supportMapFragment.getMapAsync(MapActivity.this::onMapReady);
-//                }
-//                else {
-//                    Toast.makeText(MapActivity.this, "Unable to get location",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
-//    private void turnGPSOn(){
-//        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-//
-//        if(!provider.contains("gps")){ //if gps is disabled
-//            final Intent poke = new Intent();
-//            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
-//            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-//            poke.setData(Uri.parse("3"));
-//            sendBroadcast(poke);
-//        }
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode==51){
-//            if (resultCode == RESULT_OK){
-//                fetchLastLocation();
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        LatLng ltg = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
-//        MarkerOptions markerOptions = new MarkerOptions().position(ltg).title("I'm Here");
-//        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ltg,15));
-//        googleMap.addMarker(markerOptions);
-//    }
-//
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode){
-//            case REQUEST_CODE:
-//                if (canAccessLocation()) {
-//                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                        fetchLastLocation();
-//                    }
-//                }
-//                break;
-//        }
-//    }
-//
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    private boolean canAccessLocation() {
-//        return(hasPermission(Manifest.permission.ACCESS_FINE_LOCATION));
-//    }
-//
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    private boolean hasPermission(String accessFineLocation) {
-//        return(PackageManager.PERMISSION_GRANTED==checkSelfPermission(accessFineLocation));
-//    }
-//}
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -160,10 +8,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import com.example.myapplication.direction.FetchURL;
+
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -171,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -180,7 +32,6 @@ import android.widget.Toast;
 import com.example.myapplication.BuildConfig;
 import com.example.myapplication.Database.Object.Partner;
 import com.example.myapplication.R;
-import com.example.myapplication.direction.FetchURL;
 import com.example.myapplication.direction.TaskLoadedCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -237,6 +88,9 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_map);
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        bundle1 = intent.getExtras();
+
         if (ContextCompat.checkSelfPermission(MapActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
@@ -251,22 +105,70 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.sos) {
+                if (menuItem.getItemId() == R.id.service) {
 
-                    Intent i = new Intent(MapActivity.this, WorkingActivity.class);
-                    Bundle bundle = new Bundle();
+                    Bundle bundle = getIntent().getExtras();
                     bundle.putDouble("currentLatitude",currentlocation.getLatitude());
                     bundle.putDouble("currentLongitude",currentlocation.getLongitude());
+                    Intent i = new Intent(MapActivity.this, WorkingActivity.class);
                     i.putExtras(bundle);
+                    startActivity(i);
+                    return true;
+                }
+                if (menuItem.getItemId() == R.id.sos) {
+                    if (bundle1!=null ) {
+                        Double longitude = bundle1.getDouble("longTitude");
+                        if (longitude!=0) {
+                            AlertDialog.Builder builder=new AlertDialog.Builder(MapActivity.this);
+                            builder.setMessage("Do you want to confirm ??");
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                    Intent i=new Intent(MapActivity.this,History.class);
+                                    i.putExtra("Yes", true);
+                                    i.putExtras(bundle1);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+                                    startActivity(i);
+                                    finish();
+                                }
+                            });
+
+                            AlertDialog alert=builder.create();
+                            alert.show();
+                        }
+                        else {
+                            AlertDialog.Builder builder=new AlertDialog.Builder(MapActivity.this);
+                            builder.setMessage("You didn't choose service. Please check your service!");
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            AlertDialog alert=builder.create();
+                            alert.show();
+                        };
+                    }
+                    return true;
+                }
+                if (menuItem.getItemId() == R.id.history) {
+                    Intent i = new Intent(MapActivity.this, History.class);
                     startActivity(i);
                     finish();
                     return true;
                 }
+
+
                 return false;
             }
         });
-        Intent intent = getIntent();
-        bundle1 = intent.getExtras();
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -278,11 +180,7 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
         fetchLastLocation();
-
-
-
     }
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
@@ -396,7 +294,7 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         if (bundle1!=null ) {
             Double longitude = bundle1.getDouble("longTitude");
             Double latetitude = bundle1.getDouble("lateTitude");
-//            Toast.makeText(this, longitude + "    " + latetitude, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, longitude + "    " + latetitude, Toast.LENGTH_SHORT).show();
             if (longitude!=0 && latetitude != 0){
                 // partner location
                 LatLng lat2 = new LatLng(latetitude,longitude);
@@ -406,10 +304,8 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 new FetchURL(MapActivity.this).execute(url,"driving");
             }
         }
-
-
-
     }
+
     private String getUrl(LatLng origin, LatLng dest, String directionMode) {
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
@@ -425,18 +321,14 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.mapkey);
         return url;
     }
-    // @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode){
-//            case REQUEST_CODE:
-//                if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-//                    fetchLastLocation();
-//                }
-//                break;
-//        }
-//    }
 
-    ////
+    @Override
+    public void onTaskDone(Object... values) {
+        if (currentPolyline != null)
+            currentPolyline.remove();
+        currentPolyline = map.addPolyline((PolylineOptions) values[0]);
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -454,12 +346,10 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 }
                 return;
             }
-
         }
     }
 
-
-    ///
+    //
     @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -499,8 +389,13 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 Intent i = new Intent(MapActivity.this, ProfileActivity.class);
                 i.putExtras(bundle);
                 startActivity(i);
+                break;
             case R.id.nav_home:
-
+                bundle = getIntent().getExtras();
+                Intent intent  = new Intent(this,MapActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
 
             case R.id.nav_logout:
                 AlertDialog.Builder builder=new AlertDialog.Builder(MapActivity.this);
@@ -529,6 +424,26 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 alert.show();
                 break;
             case R.id.nav_payment:
+                bundle = getIntent().getExtras();
+                i = new Intent(MapActivity.this, ServiceActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+                break;
+
+            case R.id.nav_notification:
+                bundle = getIntent().getExtras();
+                Intent intent1 = new Intent(MapActivity.this,PartnerList.class);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+                finish();
+                break;
+            case R.id.nav_rate:
+                try{
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
+                }
+                catch (ActivityNotFoundException e){
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                }
                 break;
 
             case R.id.nav_share:
@@ -545,12 +460,5 @@ public class MapActivity extends  AppCompatActivity implements OnMapReadyCallbac
                 }
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;
-    }
-
-    @Override
-    public void onTaskDone(Object... values) {
-        if (currentPolyline != null)
-            currentPolyline.remove();
-        currentPolyline = map.addPolyline((PolylineOptions) values[0]);
     }
 }
